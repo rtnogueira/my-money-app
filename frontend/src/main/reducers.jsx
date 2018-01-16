@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { reduces as formReducer } from 'redux-form'
+import { reducer as formReducer } from 'redux-form'
 
 import DashboardReducer from '../dashboard/dashboardReducer'
 import TabReducer from '../common/tab/tabReducer'
