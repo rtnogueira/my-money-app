@@ -8,6 +8,7 @@ import Tabs from '../common/tab/tabs'
 import TabsHeader from '../common/tab/tabsHeader'
 import TabsContent from '../common/tab/tabsContent'
 import TabHeader from '../common/tab/tabHeader'
+import TabContent from '../common/tab/tabContent'
 import { init, create, update, remove } from './billingCycleActions'
 
 import List from './billingCycleList'
