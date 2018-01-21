@@ -9,15 +9,25 @@ import ItemList from './itemList'
 import Summary from './summary'
 
 class BillingCycleForm extends Component {
+
+  calculateSummary() {
+    const sum = (t, v) => t + v
+    return {
+      sumOfCredits: this.props.credits.map(c => +c.value || 0).reduce(sum),
+      sumOfDebts: this.props.debts.map(d => +d.value || 0).reduce(sum)
+    }
+  }
+
   render() {
     const { handleSubmit, readOnly, credits, debts } = this.props
+    const { sumOfCredits, sumOfDebts } = this.calculateSummary()
     return (
       <form role='form' onSubmit={ handleSubmit }>
         <div className='box-footer'>
           <Field name='name' component={LabelAndInput} readOnly={readOnly} label='Nome' cols='12 4' placeholder='Digite o Nome' />
           <Field name='month' component={LabelAndInput} readOnly={readOnly} label='Mês' cols='12 4' placeholder='Digite o Mês' />
           <Field name='year' component={LabelAndInput} readOnly={readOnly} label='Ano' cols='12 4' placeholder='Digite o Ano' />
-          <Summary credit={1000} debt={400} />
+          <Summary credit={sumOfCredits} debt={sumOfDebts} />
           <ItemList cols='12 6' list={credits} readOnly={readOnly} field='credits' legend='Créditos'/>
           <ItemList cols='12 6' list={debts} readOnly={readOnly} field='debts' legend='Débitos' showStatus={true}/>
         </div>
