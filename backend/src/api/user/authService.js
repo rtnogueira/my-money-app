@@ -76,3 +76,5 @@ const signup = (req, res, next) => {
     }
   })
 }
+
+module.exports = { login, signup, validateToken }
