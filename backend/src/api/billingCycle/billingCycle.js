@@ -3,7 +3,7 @@ const mongoose = restful.mongoose
 
 const creditSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  value: { type: Number, min: 0, required: true}
+  value: { type: Number, min: 0, required: [true, 'Informe o valor do crédito']}
 })
 
 const debtSchema = new mongoose.Schema({

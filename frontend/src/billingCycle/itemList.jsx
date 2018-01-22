@@ -30,13 +30,13 @@ class ItemList extends Component {
           <td><Field name={`${this.props.field}[${index}].status`} component={Input} placeholder='Digite o status' readOnly={this.props.readOnly} /></td>
         </If>
         <td>
-          <button type='button' className='btn btn-success' onClick={() => this.add(index + 1)}>
+          <button type='button' className={`btn btn-success ${this.props.actionsStatus}`} onClick={() => this.add(index + 1)}>
             <i className='fa fa-plus'></i>
           </button>
-          <button type='button' className='btn btn-warning' onClick={() => this.add(index + 1, item)}>
+          <button type='button' className={`btn btn-warning ${this.props.actionsStatus}`} onClick={() => this.add(index + 1, item)} >
             <i className='fa fa-clone'></i>
           </button>
-          <button type='button' className='btn btn-danger' onClick={() => this.remove(index)}>
+          <button type='button' className={`btn btn-danger ${this.props.actionsStatus}`} onClick={() => this.remove(index)} >
             <i className='fa fa-trash-o'></i>
           </button>
         </td>

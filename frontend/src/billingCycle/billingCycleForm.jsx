@@ -28,8 +28,8 @@ class BillingCycleForm extends Component {
           <Field name='month' component={LabelAndInput} readOnly={readOnly} label='Mês' cols='12 4' placeholder='Digite o Mês' />
           <Field name='year' component={LabelAndInput} readOnly={readOnly} label='Ano' cols='12 4' placeholder='Digite o Ano' />
           <Summary credit={sumOfCredits} debt={sumOfDebts} />
-          <ItemList cols='12 6' list={credits} readOnly={readOnly} field='credits' legend='Créditos'/>
-          <ItemList cols='12 6' list={debts} readOnly={readOnly} field='debts' legend='Débitos' showStatus={true}/>
+          <ItemList cols='12 6' list={credits} readOnly={readOnly} field='credits' legend='Créditos' actionsStatus={this.props.actionsStatus} />
+          <ItemList cols='12 6' list={debts} readOnly={readOnly} field='debts' legend='Débitos' showStatus={true} actionsStatus={this.props.actionsStatus} />
         </div>
         <div className='box-footer'>
           <button type='submit' className={`btn btn-${this.props.submitClass}`}>{this.props.submitLabel}</button>
@@ -47,5 +47,6 @@ const mapStateToProps = state => ({
   credits: selector(state, 'credits'),
   debts: selector(state, 'debts')
 })
+
 const mapDispatchToProps = dispatch => bindActionCreators({init}, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(BillingCycleForm)
