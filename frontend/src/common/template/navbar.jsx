@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+
 import { logout } from '../../auth/authActions'
 
 class Navbar extends Component {
+
   constructor(props) {
     super(props)
     this.state = { open: false }
@@ -30,7 +32,7 @@ class Navbar extends Component {
                 <p>{name}
                   <small>{email}</small>
                 </p>
-                </li>
+              </li>
               <li className="user-footer">
                 <div className="pull-right">
                   <a href="#" onClick={this.props.logout} className="btn btn-default btn-flat">Sair</a>

@@ -7,7 +7,7 @@ const emailRegex = /\S+@\S+\.\S+/
 const passwordRegex = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})/
 
 const sendErrorsFromDB = (res, dbErrors) => {
-  const errors = []
+  const errors = []
   _.forIn(dbErrors.errors, error => errors.push(error.message))
   return res.status(400).json({errors})
 }
@@ -15,12 +15,13 @@ const sendErrorsFromDB = (res, dbErrors) => {
 const login = (req, res, next) => {
     const email = req.body.email || ''
     const password = req.body.password || ''
-    User.findOne({email}, (err, user) => {
+
+    User.findOne({ email }, (err, user) => {
       if(err) {
         return sendErrorsFromDB(res, err)
       } else if (user && bcrypt.compareSync(password, user.password)) {
         const token = jwt.sign(user, env.authSecret, {
-        expiresIn: "1 day"
+          expiresIn: "1 day"
       })
         const { name, email } = user
         res.json({ name, email, token })
@@ -36,7 +37,6 @@ const validateToken = (req, res, next) => {
     return res.status(200).send({valid: !err})
   })
 }
-
 
 const signup = (req, res, next) => {
   const name = req.body.name || ''
@@ -71,7 +71,7 @@ const signup = (req, res, next) => {
           return sendErrorsFromDB(res, err)
         } else {
           login(req, res, next)
-          }
+        }
       })
     }
   })
