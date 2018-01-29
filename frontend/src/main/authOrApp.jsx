@@ -21,11 +21,9 @@ class AuthOrApp extends Component {
     const { user, validToken } = this.props.auth
 
     if (user && validToken) {
-      console.log("App")
       axios.defaults.headers.common['authorization'] = user.token
       return <App>{ this.props.children }</App>
     } else if (!user && !validToken) {
-      console.log("Auth")
       return <Auth />
     } else {
       return false
